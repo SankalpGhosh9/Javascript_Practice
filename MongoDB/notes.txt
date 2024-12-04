@@ -1,0 +1,99 @@
+Priority or hierarchy structure of Db
+
+           DB (Database)
+           |
+           |
+         Collections (Table)
+           |
+           |
+         Documents  (Rows)
+
+## Commands ##
+
+use -->to create database 
+eg :- use databasename
+
+
+createCollection("Colection_name") ---> to create collection 
+eg :- db.createCollection("Colection_name")
+
+show dbs ---->to show database
+
+db.collection_name.drop()--->to delete collections
+
+db.dropDatabase() --->to delete databse
+
+---------CRUD-----------------
+ ######  1)Create #######
+1)To insert one  document in db
+  db.collection_name.insertOne({
+  key1:value1,
+  key2:value2,
+   });
+
+2)To insert  many document in db
+ db.collection_name.insertMany([
+{ key1:value1,
+  key2:value2
+ },
+{
+ key1:value1,
+  key2:value2,
+}
+]);
+
+ordered and unordered insert -->if there is any error in inserting bulk data or some id is duplicated then the data will be cater in the following way:-
+
+Order insert-->the place where error occurs data will not be inserted after the errordata
+
+Unordered insert(after using insertMany apply this keyword-->{ordered:false})
+This will only skip the error data and insert all the correct data into the db
+
+
+## DB is case sensitive ##
+
+ ######  2)Read #######
+
+1)To find or read the data 
+==> db.collection_name.find(query,projection)
+
+i) db.collection_name.find()
+to read all the data 
+
+ii) db.collection_name.find({key:value})
+to read data for specify parameters.
+
+iii)db.collection_name.find({key:value},{key:1})
+
+to read data for specify parameters and also show only the desired parameter  and if want to show all the parameters and remaining the queried one then ==>
+db.collection_name.find({key:value},{key:0})
+
+** This is called projection . **
+
+db.collection_name.find().limit() ==> to show limited data only in ascending order even if they are present in the db.
+
+or 
+
+db.collection_name.findOne()
+
+db.collection_name.find().limit().skip() => to skip the iterative field
+
+ ######  3)Update #######
+
+db.collection_name.updateOne(filter,update)
+==>db.collection_name.updateOne({key:value},{$set:{key:updatedValue}})
+
+db.collection_name.updateMany(filter,update)
+==>db.collection_name.updateMany({key:value},{$set:{key:updatedValue}})
+
+
+######  4)Delete #######
+
+i) db.collection_name.deleteOne(filter)
+ii) db.collection_name.deleteMany(filter)
+
+
+
+// Comaprison Operator and Logical Operator
+$gt,$in,$lt,$eq,$nin,$ne 
+$and $not $nor $or

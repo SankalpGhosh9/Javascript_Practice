@@ -1,0 +1,7 @@
+ create - directory
+ write-new-file
+ add content to the existing-file
+ read-file
+ rename
+ delete file
+ delete directory

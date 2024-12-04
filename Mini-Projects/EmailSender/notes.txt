@@ -1,0 +1,6 @@
+1) While we send a mail we use smtp server
+2)while we receive mail we use imap protocol
+
+Tools or npm packages used :-
+1)Nodemailer
+2)Ethereal 
